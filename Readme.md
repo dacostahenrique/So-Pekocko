@@ -1,5 +1,5 @@
 # Parcours Développeur Web - OpenClassrooms  
-                            Projet n°6 - So Pekocko
+                                Projet n° 6 - So Pekocko
 ## Construisez une API sécurisée pour une application d'avis gastronomiques
 
 Ce projet est réalisé dans le cadre du parcours **Développeur Web** chez Openclassrooms.
