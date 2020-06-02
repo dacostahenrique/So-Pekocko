@@ -1,4 +1,5 @@
-# Parcours Développeur Web - OpenClassrooms - Projet n°6 - So Pekocko
+# Parcours Développeur Web - OpenClassrooms  
+                            Projet n°6 - So Pekocko
 ## Construisez une API sécurisée pour une application d'avis gastronomiques
 
 Ce projet est réalisé dans le cadre du parcours **Développeur Web** chez Openclassrooms.
@@ -26,16 +27,16 @@ Pour utiliser le serveur, chargez le package nodemon : npm install -g nodemon
 Puis lancez le serveur: nodemon server.
 
 ### Technologies utilisées
-● Framework : Express ;
-● Serveur : NodeJS ;
-● Base de données : MongoDB ;
-● Toutes les opérations de la base de données doivent utilisent le pack Mongoose avec
+* Framework : Express ;
+* Serveur : NodeJS ;
+* Base de données : MongoDB ;
+* Toutes les opérations de la base de données doivent utilisent le pack Mongoose avec
 des schémas de données stricts.
 
 ### Compétences évaluées
-● Stocker des données de manière sécurisée
-● Mettre en œuvre des opérations CRUD de manière sécurisée
-● Implémenter un modèle logique de données conformément à la réglementation
+* Stocker des données de manière sécurisée
+* Mettre en œuvre des opérations CRUD de manière sécurisée
+* Implémenter un modèle logique de données conformément à la réglementation
 
 
 
