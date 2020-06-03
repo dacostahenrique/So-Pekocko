@@ -7,7 +7,7 @@ const path = require('path');
 const saucesRoutes = require('./routes/sauces');
 const userRoutes = require('./routes/user');
 
-mongoose.connect('mongodb+srv://henrique:inna1973@cluster0-ryf80.mongodb.net/test?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://henrique:inna1973@cluster0-ryf80.mongodb.net/Pekocko?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
