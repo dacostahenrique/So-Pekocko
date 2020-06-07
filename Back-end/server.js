@@ -1,4 +1,4 @@
-const http = require('http');
+const http = require('http'); //https requiert un certificat SSL à obtenir avec un nom de domaine
 const app = require('./app');
 
 const normalizePort = (val) => {
@@ -36,7 +36,7 @@ const errorHandler = (error) => {
   }
 };
 
-const server = http.createServer(app);
+const server = http.createServer(app); //https requiert un certificat SSL à obtenir avec un nom de domaine
 
 server.on('error', errorHandler);
 server.on('listening', () => {
