@@ -6,6 +6,7 @@ const MIME_TYPES = {
   'image/png': 'png'
 };
 
+// Configuration de multer pour préciser à multer où enregistrer les fichiers et les renommer
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
     callback(null, 'images');
@@ -17,4 +18,5 @@ const storage = multer.diskStorage({
   }
 });
 
+// Export de l'élément multer, seuls les fichiers de type image seront gérés
 module.exports = multer({storage: storage}).single('image');

@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+// Création d'un schema mangoose pour que les données de la base MongoDB ne puissent
+// pas différer de celui précisé dans le schema
 const sauceSchema = mongoose.Schema({
   userId: { type: String, required: true },
   name: { type: String, required: true },

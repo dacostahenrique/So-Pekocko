@@ -1,3 +1,6 @@
+// APPLICATION : fait appel aux différentes fonctions implémentées dans l'APi :
+// Accès aux images, aux route User, aux route Sauce
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -9,7 +12,7 @@ const nocache = require('nocache');
 const saucesRoutes = require('./routes/sauces');
 const userRoutes = require('./routes/user');
 
-//connection à la base de données
+//Connection à la base de données
 mongoose.connect('mongodb+srv://henrique:inna1973@cluster0-ryf80.mongodb.net/Pekocko?retryWrites=true&w=majority',
   { useCreateIndex: true,
     useNewUrlParser: true,
@@ -17,6 +20,7 @@ mongoose.connect('mongodb+srv://henrique:inna1973@cluster0-ryf80.mongodb.net/Pek
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
+//Création d'une application express
 const app = express();
 
 app.use((req, res, next) => {
@@ -32,28 +36,28 @@ app.use((req, res, next) => {
 });
 
 //Options de sécurisation des cookies
-//const expiryDate = new Date( Date.now() +  0); // 1 heure (60 * 60 * 1000)
+const expiryDate = new Date( Date.now() + 3600000); // 1 heure (60 * 60 * 1000)
 app.use(session({
   name: 'session',
   secret: "s3Cur3",
   cookie: { secure: true,
             httpOnly: true,
             domain: 'http://localhost:3000',
-           // expires: expiryDate
+            expires: expiryDate
           }
   })
 );
 
-//middleware qui permet de parser les requêtes envoyées par le client, on peut y accéder grâce à req.body
+//Middleware qui permet de parser les requêtes envoyées par le client, on peut y accéder grâce à req.body
 app.use(bodyParser.json());
-//midleware qui permet de charger les fichiers qui sont dans le repertoire images
+//Midleware qui permet de charger les fichiers qui sont dans le repertoire images
 app.use('/images', express.static(path.join(__dirname, 'images')));
-//middleware qui va transmettre les requêtes vers ces url vers les routes correspondantes
+//Middleware qui va transmettre les requêtes vers ces url vers les routes correspondantes
 app.use('/api/sauces', saucesRoutes);
 app.use('/api/auth', userRoutes);
 //Sécuriser Express en définissant divers en-têtes HTTP
 app.use(helmet());
-//désactive la mise en cache du navigateur
+//Désactive la mise en cache du navigateur
 app.use(nocache());
 
 module.exports = app;

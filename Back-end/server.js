@@ -1,6 +1,7 @@
 const http = require('http'); //https requiert un certificat SSL à obtenir avec un nom de domaine
 const app = require('./app');
 
+// La fonction normalizePort renvoie un port valide, qu'il soit fourni sous la forme d'un numéro ou d'une chaîne ;
 const normalizePort = (val) => {
   const port = parseInt(val, 10);
 
@@ -13,9 +14,11 @@ const normalizePort = (val) => {
   return false;
 };
 
+//Si aucun port n'est fourni on écoutera sur le port 3000
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
+//Traite les différents types d'erreur possible
 const errorHandler = (error) => {
   if (error.syscall !== 'listen') {
     throw error;
@@ -36,8 +39,10 @@ const errorHandler = (error) => {
   }
 };
 
+//Créer un serveur avec express
 const server = http.createServer(app); //https requiert un certificat SSL à obtenir avec un nom de domaine
 
+//Lance le serveur et affiche sur quel port se connecter ou gère les erreurs s'il y en a
 server.on('error', errorHandler);
 server.on('listening', () => {
   const address = server.address();
