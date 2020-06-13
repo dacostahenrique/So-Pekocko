@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 require('mongoose-type-email');
 const uniqueValidator = require('mongoose-unique-validator');
+const sanitizerPlugin = require('mongoose-sanitizer-plugin');
 
 // la valeur unique , avec l'élément mongoose-unique-validator passé comme plug-in,
 // s'assurera que deux utilisateurs ne peuvent partager la même adresse e-mail.
@@ -12,6 +13,10 @@ const userSchema = mongoose.Schema({
 });
 
 userSchema.plugin(uniqueValidator);
+
+// Plugin pour Mongoose qui purifie les champs du model avant de les enregistrer dans la base MongoDB.
+// Utilise le HTML Sanitizer de Google Caja pour effectuer la désinfection.
+userSchema.plugin(sanitizerPlugin);
 
 module.exports = mongoose.model('User', userSchema);
 

@@ -49,6 +49,7 @@ app.use(session({
 );
 
 //Middleware qui permet de parser les requêtes envoyées par le client, on peut y accéder grâce à req.body
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 //Midleware qui permet de charger les fichiers qui sont dans le repertoire images
 app.use('/images', express.static(path.join(__dirname, 'images')));

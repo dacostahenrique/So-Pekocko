@@ -2,11 +2,11 @@
 <form [formGroup]="loginForm" *ngIf="!loading">
   <div class="form-group">
     <label for="email">Email</label>
-    <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email requis">
+    <input type="email" class="form-control" id="email" formControlName="email">
   </div>
   <div class="form-group">
     <label for="password">Password</label>
-    <input type="password" class="form-control" id="password" formControlName="password" placeholder="PassWord : Min 8 caratères - Au moins 1 Majuscule, 1 minuscule, 1 chiffre - Sans espaces">
+    <input type="password" class="form-control" id="password" formControlName="password">
   </div>
   <button mat-raised-button color="primary" [disabled]="loginForm.invalid" (click)="onLogin()">LOGIN</button>
   <p class="text-danger" *ngIf="errorMsg">{{ errorMsg }}</p>
