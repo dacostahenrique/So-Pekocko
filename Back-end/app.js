@@ -5,6 +5,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
+// Helmet est un plugin de sécurité très complet, utilisé pour de nombreuses raisons différentes
+// Entre autres choses, il sécurise nos requêtes HTTP, sécurise les en-têtes, contrôle la prélecture DNS du navigateur, empêche le détournement de clics,
+// ajoute une protection XSS mineure et protège contre le reniflement de TYPE MIME * /
 const helmet = require('helmet')
 const session = require('cookie-session');
 const nocache = require('nocache');
@@ -12,8 +15,10 @@ const nocache = require('nocache');
 const saucesRoutes = require('./routes/sauces');
 const userRoutes = require('./routes/user');
 
+// Appel et injection du package dotenv dans notre configuration de connection
+require('dotenv').config();
 //Connection à la base de données
-mongoose.connect('mongodb+srv://henrique:inna1973@cluster0-ryf80.mongodb.net/Pekocko?retryWrites=true&w=majority',
+mongoose.connect(process.env.DB_URI,
   { useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true })
@@ -51,14 +56,14 @@ app.use(session({
 //Middleware qui permet de parser les requêtes envoyées par le client, on peut y accéder grâce à req.body
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+//Sécuriser Express en définissant divers en-têtes HTTP
+app.use(helmet());
+//Désactive la mise en cache du navigateur
+app.use(nocache());
 //Midleware qui permet de charger les fichiers qui sont dans le repertoire images
 app.use('/images', express.static(path.join(__dirname, 'images')));
 //Middleware qui va transmettre les requêtes vers ces url vers les routes correspondantes
 app.use('/api/sauces', saucesRoutes);
 app.use('/api/auth', userRoutes);
-//Sécuriser Express en définissant divers en-têtes HTTP
-app.use(helmet());
-//Désactive la mise en cache du navigateur
-app.use(nocache());
 
 module.exports = app;
