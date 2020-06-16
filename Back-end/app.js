@@ -44,7 +44,7 @@ app.use((req, res, next) => {
 const expiryDate = new Date( Date.now() + 3600000); // 1 heure (60 * 60 * 1000)
 app.use(session({
   name: 'session',
-  secret: "s3Cur3",
+  secret: process.env.SEC_SES,
   cookie: { secure: true,
             httpOnly: true,
             domain: 'http://localhost:3000',

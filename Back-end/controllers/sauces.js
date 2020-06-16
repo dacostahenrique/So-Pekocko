@@ -31,7 +31,6 @@ exports.createSauce = (req, res, next) => {
 //Permet de modifier une sauce
 exports.modifySauce = (req, res, next) => {
   let sauceObject = {};
-
   req.file ? (
     // Si la modification contient une image => Utilisation de l'opérateur ternaire comme structure conditionnelle.
     Sauce.findOne({ _id: req.params.id }).then((sauce) => {
@@ -50,7 +49,6 @@ exports.modifySauce = (req, res, next) => {
     // Si la modification ne contient pas de nouvelle image
     sauceObject = { ...req.body }
   )
-
   Sauce.updateOne(
     // On applique les paramètre de sauceObject
     { _id: req.params.id },
